@@ -2,17 +2,17 @@
   "name": "ghibli-finder",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint pages/*"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
       "pre-push": "npm run lint"
     }
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint pages/*"
   },
   "dependencies": {
     "next": "9.5.3",
