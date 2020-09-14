@@ -1,0 +1,67 @@
+.sidebar {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+
+  &_logo {
+    width: 300px;
+    margin-bottom: 100px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .bookmarkLink {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    transition: ease all 300ms;
+
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      margin-right: 20px;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+
+      .iconImage {
+        width: 25px;
+        margin-top: 2px;
+        margin-right: 2px;
+      }
+
+      &:after,
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: var(--white);
+        transition: ease all 300ms;
+        z-index: -1;
+      }
+
+      &:before {
+        right: -3px;
+        bottom: -3px;
+        background-color: var(--darkblue);
+      }
+
+    }
+
+    &:hover {
+      .icon:after {
+        background-color: var(--yellowgb);
+      }
+    }
+
+  }
+}
