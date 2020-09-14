@@ -1,11 +1,12 @@
+import Sidebar from '../components/sidebar/sidebar';
 import styles from '../styles/Home.module.scss';
 
 const Home = () => {
-  const foo = 'bar';
 
   return (
-    <div className={styles.container}>
-      Hello {foo}
+    <div className="container">
+      <Sidebar />
+      <div className={styles.cardsWrapper}></div>
     </div>
   );
 };
