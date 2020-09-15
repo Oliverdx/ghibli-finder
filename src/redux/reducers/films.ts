@@ -16,22 +16,22 @@ export default function filmsReducer (state = initialState, action) {
       return {
         ...state,
         pending: true
-      }
+      };
     case FETCH_FILMS_SUCCESS:
       return {
         ...state,
         pending: false,
         films: action.films
-      }
+      };
     case FETCH_FILMS_ERROR:
       return {
         ...state,
         error: action.error
-      }
+      };
     default:
-      return initialState
+      return initialState;
   }
-};
+}
 
 export const getFilms = state => state.films;
 export const getFilmsPending = state => state.films.pending;

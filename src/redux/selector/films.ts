@@ -9,15 +9,15 @@ function fetchFilms () {
       .then(res => res.json())
       .then(data => {
         if (data.error) {
-          throw (data.error)
+          throw (data.error);
         }
         dispatch(fetchFilmsSuccess(data));
-        return data
+        return data;
       })
       .catch(error => {
-        dispatch(fetchFilmsError(error))
-      })
-  }
+        dispatch(fetchFilmsError(error));
+      });
+  };
 }
 
 export default fetchFilms;

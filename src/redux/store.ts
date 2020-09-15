@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
 
 import filmsReducer from './reducers/films';
 import peopleReducer from './reducers/people';
@@ -10,7 +10,7 @@ export default function configureAppStore (preloadedState) {
       people: peopleReducer
     },
     preloadedState
-  })
+  });
 
   return store;
 }

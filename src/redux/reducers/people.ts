@@ -16,22 +16,22 @@ export default function peopleReducer (state = initialState, action) {
       return {
         ...state,
         pending: true
-      }
+      };
     case FETCH_PEOPLE_SUCCESS:
       return {
         ...state,
         pending: false,
         films: action.films
-      }
+      };
     case FETCH_PEOPLE_ERROR:
       return {
         ...state,
         error: action.error
-      }
+      };
     default:
-      return initialState
+      return initialState;
   }
-};
+}
 
 export const getPeople = state => state.people;
 export const getPeoplePending = state => state.people.pending;

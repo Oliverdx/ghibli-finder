@@ -8,7 +8,7 @@ import styles from '../styles/Home.module.scss';
 import { getFilms, getFilmsPending, getFilmsError } from '../redux/reducers/films';
 import fetchFilms from '../redux/selector/films';
 
-const Home = (props) => {
+const Home = (props: any): React.ReactElement => {
 
   useEffect(() => {
     props.fetchFilms();
@@ -37,11 +37,11 @@ const mapStateToProps = state => {
     error: getFilmsError(state),
     films: response.films,
     pending: getFilmsPending(state)
-  }
+  };
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchFilms: fetchFilms
-}, dispatch)
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

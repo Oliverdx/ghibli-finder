@@ -5,13 +5,15 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react-svg/recommended"
+        "plugin:react-svg/recommended",
+        "plugin:react/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
         "React": "writable"
     },
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "tsx": true

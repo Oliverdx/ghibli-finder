@@ -1,10 +1,10 @@
 import styles from './style.module.scss';
 
-const Card = ({ data }) => {
+const Card = ({ data }: any): React.ReactElement => {
 
   if (!data) {
     return <></>;
-  };
+  }
 
   return (
     <div className={styles.card}>

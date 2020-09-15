@@ -11,7 +11,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src/pages/** src/components/** src/redux/**",
+    "lint": "eslint . --ext .tsx,.ts",
     "postbuild": "next-on-netlify"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
     "@types/react": "^16.9.49",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.9.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-standard": "^14.1.1",

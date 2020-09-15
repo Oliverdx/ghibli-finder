@@ -9,15 +9,15 @@ function fetchPeople () {
       .then(res => res.json())
       .then(data => {
         if (data.error) {
-          throw (data.error)
+          throw (data.error);
         }
         dispatch(fetchPeopleSuccess(data));
-        return data
+        return data;
       })
       .catch(error => {
-        dispatch(fetchPeopleError(error))
-      })
-  }
+        dispatch(fetchPeopleError(error));
+      });
+  };
 }
 
 export default fetchPeople;
