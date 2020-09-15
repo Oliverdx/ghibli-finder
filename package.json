@@ -11,7 +11,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint pages/*",
+    "lint": "eslint src/pages/** src/components/** src/redux/**",
     "postbuild": "next-on-netlify"
   },
   "dependencies": {
