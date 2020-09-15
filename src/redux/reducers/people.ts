@@ -1,13 +1,7 @@
-const peopleReducer = (intialState, action) => {
-  return [{
-    "name": "Pazu",
-    "gender": "Male",
-    "age": "13"
-  }, {
-    "name": "Lusheeta Toel Ul Laputa",
-    "gender": "Female",
-    "age": "13"
-  }];
+const initialState = {};
+
+const peopleReducer = (state, action) => {
+  return initialState
 };
 
 export default peopleReducer;

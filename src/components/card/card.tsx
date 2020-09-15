@@ -1,6 +1,11 @@
 import styles from './style.module.scss';
 
 const Card = ({ data }) => {
+
+  if (!data) {
+    return <></>;
+  };
+
   return (
     <div className={styles.card}>
       <h2>{data.title}</h2>
