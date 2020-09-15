@@ -4,13 +4,14 @@ import configureAppStore from '../redux/store';
 import '../styles/globals.scss';
 import '../styles/colors.scss';
 
-function MyApp ({ Component, pageProps }): JSX.Element {
+const MyApp = ({ Component, pageProps }: any): React.ReactElement => {
 
   const store = configureAppStore({});
 
-  return (<Provider store={store}>
-    <Component {...pageProps} />
-  </Provider>);
-}
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>);
+};
 
 export default MyApp;

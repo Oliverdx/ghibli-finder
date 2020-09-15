@@ -1,23 +1,47 @@
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import Sidebar from '../components/sidebar/sidebar';
 import Card from '../components/card/card';
 import styles from '../styles/Home.module.scss';
+import { getFilms, getFilmsPending, getFilmsError } from '../redux/reducers/films';
+import fetchFilms from '../redux/selector/films';
 
-const Home = () => {
+const Home = (props: any): React.ReactElement => {
 
-  const fakeData = {
-    "title": "Castle in the Sky",
-    "description": "The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputa's science to make himself ruler of the world.",
-    "director": "Hayao Miyazaki"
-  }
+  useEffect(() => {
+    props.fetchFilms();
+  }, []);
 
   return (
     <div className='container'>
       <Sidebar />
-      <div className={styles.cardsWrapper}>
-        <Card data={fakeData} />
-      </div>
+      {props.pending ?
+        <div className={styles.cardsWrapper}>
+          LOADING DATA
+        </div>
+        :
+        <div className={styles.cardsWrapper}>
+          {props.films.map(film => <Card data={film} key={film.id} />)}
+        </div>
+      }
     </div>
   );
 };
 
-export default Home;
+const mapStateToProps = state => {
+  const response = getFilms(state);
+
+  return {
+    error: getFilmsError(state),
+    films: response.films,
+    pending: getFilmsPending(state)
+  };
+};
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchFilms: fetchFilms
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
