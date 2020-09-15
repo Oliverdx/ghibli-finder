@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import Sidebar from '../components/sidebar/sidebar';
 import Card from '../components/card/card';
 import styles from '../styles/Home.module.scss';
-import { getFilms } from '../redux/reducers/films';
+import { getFilms, getFilmsPending, getFilmsError } from '../redux/reducers/films';
 import fetchFilms from '../redux/selector/films';
 
 const Home = (props) => {
@@ -34,9 +34,9 @@ const mapStateToProps = state => {
   const response = getFilms(state);
 
   return {
-    error: response.error,
+    error: getFilmsError(state),
     films: response.films,
-    pending: response.pending
+    pending: getFilmsPending(state)
   }
 };
 

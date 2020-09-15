@@ -34,5 +34,5 @@ export default function filmsReducer (state = initialState, action) {
 };
 
 export const getFilms = state => state.films;
-export const getFilmsPending = state => state.pending;
-export const getFilmsError = state => state.error;
+export const getFilmsPending = state => state.films.pending;
+export const getFilmsError = state => state.films.error;
