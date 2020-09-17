@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux';
 import configureAppStore from '../redux/store';
+import Wrapper from '../components/wrapper';
 
 import '../styles/globals.scss';
 import '../styles/colors.scss';
@@ -10,7 +11,9 @@ const MyApp = ({ Component, pageProps }: any): React.ReactElement => {
 
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <Wrapper>
+        <Component {...pageProps} />
+      </Wrapper>
     </Provider>);
 };
 

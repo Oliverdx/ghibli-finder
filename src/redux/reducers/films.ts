@@ -5,7 +5,7 @@ import {
 } from '../actions/films';
 
 const initialState = {
-  pending: false,
+  pending: true,
   films: [],
   error: null
 };
@@ -29,10 +29,10 @@ export default function filmsReducer (state = initialState, action) {
         error: action.error
       };
     default:
-      return initialState;
+      return state;
   }
 }
 
 export const getFilms = state => state.films;
-export const getFilmsPending = state => state.films.pending;
-export const getFilmsError = state => state.films.error;
+export const getFilmsPending = state => state.films?.pending;
+export const getFilmsError = state => state.films?.error;

@@ -6,14 +6,16 @@ import {
 
 const initialState = {
   pending: false,
-  films: [],
+  people: [],
   error: null
 };
 
 export default function peopleReducer (state = initialState, action) {
+
   switch (action.type) {
     case FETCH_PEOPLE_PENDING:
       return {
+        ...state,
         ...state,
         pending: true
       };
@@ -21,7 +23,7 @@ export default function peopleReducer (state = initialState, action) {
       return {
         ...state,
         pending: false,
-        films: action.films
+        people: action.people
       };
     case FETCH_PEOPLE_ERROR:
       return {
@@ -29,7 +31,7 @@ export default function peopleReducer (state = initialState, action) {
         error: action.error
       };
     default:
-      return initialState;
+      return state;
   }
 }
 
