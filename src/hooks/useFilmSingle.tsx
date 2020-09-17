@@ -23,7 +23,8 @@ const useFilmSingle = () => {
     let casting = people.filter(singlePeople => {
       const filmUrl = singlePeople.films.filter(film => film === filmData?.url);
       return filmUrl.length > 0;
-    });
+    }).map(cast => cast.name);
+
 
     if (peopleReducer.alreadyFetched && !casting.length)
       casting = ['No Cast founded'];
@@ -31,12 +32,9 @@ const useFilmSingle = () => {
     setData({ filmData, casting });
   }
 
-  const isPending = () => !filmsReducer.films && !peopleReducer.people;
-
   return {
     data,
-    getFilmData,
-    isPending
+    getFilmData
   };
 
 };

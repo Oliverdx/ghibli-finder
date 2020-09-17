@@ -25,3 +25,7 @@ a {
 .container {
   display: flex;
 }
+
+.content-wrapper {
+  width: calc(100% - 450px);
+}

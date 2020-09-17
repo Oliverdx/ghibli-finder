@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import Sidebar from '../components/sidebar/sidebar';
 import Card from '../components/card/card';
-import styles from '../styles/Home.module.scss';
+
 import { getFilms, getFilmsPending, getFilmsError } from '../redux/reducers/films';
 
 const Home = (props: any): React.ReactElement => {
@@ -13,11 +13,11 @@ const Home = (props: any): React.ReactElement => {
     <div className='container'>
       <Sidebar />
       {props.pending ?
-        <div className={styles.cardsWrapper}>
+        <div className='content-wrapper'>
           LOADING DATA
         </div>
         :
-        <div className={styles.cardsWrapper}>
+        <div className='content-wrapper card-wrapper'>
           {props.films.map(film => <Card data={film} key={film.id} />)}
         </div>
       }
