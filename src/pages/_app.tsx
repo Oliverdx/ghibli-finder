@@ -17,4 +17,12 @@ const MyApp = ({ Component, pageProps }: any): React.ReactElement => {
     </Provider>);
 };
 
+
+MyApp.getInitialProps = async ({ Component, ctx }) => {
+  const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+
+  //Anything returned here can be access by the client
+  return { pageProps: pageProps };
+}
+
 export default MyApp;
