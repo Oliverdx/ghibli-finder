@@ -5,6 +5,7 @@ import {
 } from '../actions/people';
 
 const initialState = {
+  alreadyFetched: false,
   pending: false,
   people: [],
   error: null
@@ -22,8 +23,9 @@ export default function peopleReducer (state = initialState, action) {
     case FETCH_PEOPLE_SUCCESS:
       return {
         ...state,
+        alreadyFetched: true,
         pending: false,
-        people: action.people
+        people: action.people,
       };
     case FETCH_PEOPLE_ERROR:
       return {
