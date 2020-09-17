@@ -8,10 +8,10 @@ export function fetchPeoplePending () {
   };
 }
 
-export function fetchPeopleSuccess (films) {
+export function fetchPeopleSuccess (people) {
   return {
     type: FETCH_PEOPLE_SUCCESS,
-    films: films
+    people: people
   };
 }
 

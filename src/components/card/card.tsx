@@ -8,9 +8,12 @@ const Card = ({ data }: any): React.ReactElement => {
 
   return (
     <div className={styles.card}>
-      <h2>{data.title}</h2>
-      <h3>{data.director}</h3>
-      <p>{data.description}</p>
+      <h2 className={styles.cardTitle}>{data.title}</h2>
+      <h3 className={styles.cardDirector}>{data.director}</h3>
+      <div className="hidden-description">
+        <p className={styles.cardDescription}>{data.description}</p>
+        <a href={`/film/${data.title}`}>Veja Mais</a>
+      </div>
     </div>
   );
 };

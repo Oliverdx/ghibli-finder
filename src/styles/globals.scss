@@ -7,6 +7,7 @@ body {
   font-family: Roboto, sans-serif;
   background: var(--clearblue) url('/img/general_bg.png') no-repeat bottom left / 400px;
   color: var(--white);
+  text-align: justify;
 }
 
 body {
@@ -22,6 +23,22 @@ a {
   box-sizing: border-box;
 }
 
+button {
+  background: none;
+  border: none;
+}
+
+a,
+button {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .container {
   display: flex;
+}
+
+.content-wrapper {
+  width: calc(100% - 450px);
 }

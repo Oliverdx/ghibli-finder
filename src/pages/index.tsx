@@ -1,28 +1,21 @@
-import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import Sidebar from '../components/sidebar/sidebar';
 import Card from '../components/card/card';
-import styles from '../styles/Home.module.scss';
+
 import { getFilms, getFilmsPending, getFilmsError } from '../redux/reducers/films';
-import fetchFilms from '../redux/selector/films';
 
 const Home = (props: any): React.ReactElement => {
-
-  useEffect(() => {
-    props.fetchFilms();
-  }, []);
 
   return (
     <div className='container'>
       <Sidebar />
       {props.pending ?
-        <div className={styles.cardsWrapper}>
+        <div className='content-wrapper'>
           LOADING DATA
         </div>
         :
-        <div className={styles.cardsWrapper}>
+        <div className='content-wrapper card-wrapper'>
           {props.films.map(film => <Card data={film} key={film.id} />)}
         </div>
       }
@@ -40,8 +33,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchFilms: fetchFilms
-}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);

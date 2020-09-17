@@ -11,7 +11,7 @@ export function fetchFilmsPending () {
 export function fetchFilmsSuccess (films) {
   return {
     type: FETCH_FILMS_SUCCESS,
-    films: films
+    films: films,
   };
 }
 
