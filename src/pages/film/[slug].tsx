@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Sidebar from '../../components/sidebar/sidebar';
 import styles from './film.module.scss';
 import useFilmSingle from '../../hooks/useFilmSingle';
+import filmsReducer from '../../redux/reducers/films';
 
 const Film = (): React.ReactElement => {
 
@@ -16,44 +17,50 @@ const Film = (): React.ReactElement => {
   useEffect(() => {
     if (!data.filmData || !data.casting.length) {
       getFilmData(slug.toString());
-      setLoading(false);
     }
-  }, [data]);
 
-  console.log(data);
+    if (data)
+      setLoading(false);
+
+  }, [data]);
 
   return (
     <div className='container'>
       <Sidebar />
       {loading ?
         <div className='content-wrapper'>
-          LOADING DATA
+          LOADING...
         </div>
         :
         <div className='content-wrapper'>
-          <header>
-            <h1>{data?.filmData?.title}</h1> <button>Add aos Favoritos</button>
-            <div className="realease">{data?.filmData?.release_date}</div>
-            <div className="score">
-              <p>Rotten Logo</p>
-              <p>{data?.filmData?.rt_score}</p>
+          <header className={styles.filmHeader}>
+            <h1 className={styles.filmTitle}>{data?.filmData?.title}</h1>
+            <button className={styles.bookmark}>
+              <img src="/img/heart.png" alt="heart icon" className={styles.iconImage} />
+            </button>
+            <div className={styles.release}>
+              {data?.filmData?.release_date}
+            </div>
+            <div className={styles.score}>
+              <img src="/img/rotten_tomatoes.png" alt="Rotten Tomatoes" className={styles.score_logo} />
+              <p className={styles.score_value}>{data?.filmData?.rt_score}</p>
             </div>
           </header>
-          <main>
-            <div className="description">
+          <main className={styles.filmContent}>
+            <div className={styles.description}>
               <b>Description</b>
               <p>{data?.filmData?.description}</p>
             </div>
-            <div className="RightBox">
-              <div className="casting">
+            <div className={styles.RightBox}>
+              <div className={styles.casting}>
                 <b>Personagens</b>
                 <p>{data?.casting?.join(', ')}</p>
               </div>
-              <div className="director">
+              <div className={styles.director}>
                 <b>Diretor</b>
                 <p>{data?.filmData?.director}</p>
               </div>
-              <div className="producer">
+              <div className={styles.producer}>
                 <b>Produtor</b>
                 <p>{data?.filmData?.producer}</p>
               </div>
