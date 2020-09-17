@@ -8,13 +8,9 @@ const Wrapper = ({ children }) => {
 
   const dispatch = useDispatch();
 
-  const getData = async () => {
-    await dispatch(fetchFilms());
-    await dispatch(fetchPeople());
-  };
-
   useEffect(() => {
-    getData();
+    dispatch(fetchFilms());
+    dispatch(fetchPeople());
   }, []);
 
   return children;
