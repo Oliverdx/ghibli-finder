@@ -12,7 +12,6 @@ export function fetchFilmsSuccess (films) {
   return {
     type: FETCH_FILMS_SUCCESS,
     films: films,
-    filmsLoaded: true
   };
 }
 
