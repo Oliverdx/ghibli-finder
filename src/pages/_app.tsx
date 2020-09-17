@@ -23,6 +23,6 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 
   //Anything returned here can be access by the client
   return { pageProps: pageProps };
-}
+};
 
 export default MyApp;

@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import Sidebar from '../components/sidebar/sidebar';
 import Card from '../components/card/card';

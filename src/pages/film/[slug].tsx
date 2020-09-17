@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import Sidebar from '../../components/sidebar/sidebar';
 import styles from './film.module.scss';
 import useFilmSingle from '../../hooks/useFilmSingle';
-import filmsReducer from '../../redux/reducers/films';
 
 const Film = (): React.ReactElement => {
 

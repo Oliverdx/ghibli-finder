@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const useFilmSingle = () => {
-  const [data, setData] = useState({} as any);
+  const [data, setData] = useState({});
   const filmsReducer = useSelector(state => state.films);
   const peopleReducer = useSelector(state => state.people);
 
@@ -11,7 +11,6 @@ const useFilmSingle = () => {
     const { people } = await peopleReducer;
 
     if (!films || !people) {
-      console.log('Caiu no return');
       return;
     }
 
@@ -30,7 +29,7 @@ const useFilmSingle = () => {
       casting = ['No Cast founded'];
 
     setData({ filmData, casting });
-  }
+  };
 
   return {
     data,
