@@ -6,13 +6,8 @@ import Sidebar from '../components/sidebar/sidebar';
 import Card from '../components/card/card';
 import styles from '../styles/Home.module.scss';
 import { getFilms, getFilmsPending, getFilmsError } from '../redux/reducers/films';
-import fetchFilms from '../redux/selector/films';
 
 const Home = (props: any): React.ReactElement => {
-
-  useEffect(() => {
-    props.fetchFilms();
-  }, []);
 
   return (
     <div className='container'>
@@ -40,8 +35,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchFilms: fetchFilms
-}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);
