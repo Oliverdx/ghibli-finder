@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
+interface dataType { filmData: any, casting: any }
+
 const useFilmSingle = () => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState<dataType | {}>({});
   const filmsReducer = useSelector(state => state.films);
   const peopleReducer = useSelector(state => state.people);
 
