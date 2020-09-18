@@ -1,10 +1,20 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-interface dataType { filmData: any, casting: any }
+type dataType = {
+  filmData: {
+    title: string,
+    release_date: string,
+    rt_score: string,
+    description: string,
+    director: string,
+    producer: string
+  },
+  casting: []
+};
 
 const useFilmSingle = () => {
-  const [data, setData] = useState<dataType | {}>({});
+  const [data, setData] = useState<dataType>();
   const filmsReducer = useSelector(state => state.films);
   const peopleReducer = useSelector(state => state.people);
 
