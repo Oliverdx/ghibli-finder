@@ -14,7 +14,7 @@ const Film = (): React.ReactElement => {
   const { data, getFilmData } = useFilmSingle();
 
   useEffect(() => {
-    if (!data.filmData || !data.casting.length) {
+    if (!data?.filmData || !data?.casting.length) {
       getFilmData(slug.toString());
     }
 
