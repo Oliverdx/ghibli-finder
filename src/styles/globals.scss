@@ -1,7 +1,7 @@
 html,
 body {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   padding: 0;
   margin: 0;
   font-family: Roboto, sans-serif;
@@ -41,4 +41,10 @@ button {
 
 .content-wrapper {
   width: calc(100% - 450px);
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }

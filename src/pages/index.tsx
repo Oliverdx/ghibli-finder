@@ -5,18 +5,18 @@ import Card from '../components/card/card';
 
 import { getFilms, getFilmsPending, getFilmsError } from '../redux/reducers/films';
 
-const Home = (props: any): React.ReactElement => {
+const Home = ({ films, pending }): React.ReactElement => {
 
   return (
     <div className='container'>
       <Sidebar />
-      {props.pending ?
+      {pending ?
         <div className='content-wrapper'>
           LOADING DATA
         </div>
         :
         <div className='content-wrapper card-wrapper'>
-          {props.films.map(film => <Card data={film} key={film.id} />)}
+          {films.map(film => <Card data={film} key={film.id} />)}
         </div>
       }
     </div>
