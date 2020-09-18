@@ -3,9 +3,14 @@ import { connect } from 'react-redux';
 import Sidebar from '../components/sidebar/sidebar';
 import Card from '../components/card/card';
 
-import { getFilms, getFilmsPending, getFilmsError } from '../redux/reducers/films';
+import { getFilms, getFilmsPending } from '../redux/reducers/films';
 
-const Home = ({ films, pending }): React.ReactElement => {
+interface Props {
+  films: any,
+  pending: boolean
+}
+
+const Home = ({ films, pending }: Props): React.ReactElement => {
 
   return (
     <div className='container'>
@@ -24,11 +29,9 @@ const Home = ({ films, pending }): React.ReactElement => {
 };
 
 const mapStateToProps = state => {
-  const response = getFilms(state);
 
   return {
-    error: getFilmsError(state),
-    films: response.films,
+    films: getFilms(state).films,
     pending: getFilmsPending(state)
   };
 };
