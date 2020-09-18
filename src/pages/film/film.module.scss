@@ -1,0 +1,60 @@
+.filmHeader {
+  display: grid;
+  grid-template-areas: 'title bookmark''release release''score score';
+  grid-template-columns: auto 50px;
+  margin-bottom: 50px;
+}
+
+.filmTitle {
+  grid-area: title;
+  font-weight: normal;
+  font-size: 38px;
+  margin: 0 0 5px;
+}
+
+.bookmark {
+  grid-area: bookmark;
+}
+
+.release {
+  grid-area: release;
+  font-size: 23px;
+  margin-bottom: 10px;
+}
+
+.score {
+  grid-area: score;
+  display: flex;
+  justify-content: center;
+  width: 130px;
+  height: 40px;
+  background: var(--redgb);
+
+  &_logo {
+    padding: 0 5px;
+    width: 100%;
+    height: 26px;
+    align-self: center;
+  }
+
+  &_value {
+    width: 50px;
+    padding: 7px 0;
+    margin: 0;
+    font-size: 14px;
+    line-height: 26px;
+    text-align: center;
+    font-weight: bold;
+    background: var(--white);
+    color: var(--redgb);
+  }
+}
+
+.filmContent {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.description {
+  padding-right: 20px;
+}
