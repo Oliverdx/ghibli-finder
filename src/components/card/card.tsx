@@ -1,6 +1,16 @@
+import useFavoritos from '../../hooks/useFavoritos';
 import styles from './style.module.scss';
+import { useState, useEffect } from 'react';
 
 const Card = ({ data }: any): React.ReactElement => {
+
+  const { handleFavoritos, checkFavorito } = useFavoritos();
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    const isFavorite = checkFavorito(data.id);
+    setIsFavorite(isFavorite);
+  }, [isFavorite]);
 
   if (!data) {
     return <></>;
@@ -16,6 +26,12 @@ const Card = ({ data }: any): React.ReactElement => {
     };
   };
 
+  const handleFavoritoClick = (itemID) => {
+    const isFavorite = checkFavorito(itemID);
+    setIsFavorite(!isFavorite);
+    handleFavoritos(itemID);
+  }
+
   return (
     <div className={styles.card} style={background()}>
       <div className={styles.card_description}>
@@ -23,8 +39,8 @@ const Card = ({ data }: any): React.ReactElement => {
           <h2 className={styles.card_title__title}>
             <span>{data.title}</span>
           </h2>
-          <button className={styles.card_title__bookmark}>
-            <img src="/img/heart.png" alt="heart icon" className={styles.card_title__bookmark__icon} />
+          <button className={styles.card_title__bookmark} onClick={() => handleFavoritoClick(data.id)} >
+            <img src={`/img/${isFavorite ? 'heart_filled.png' : 'heart.png'}`} alt="heart icon" className={styles.card_title__bookmark__icon} />
           </button>
           <h3 className={styles.card_title__director}>{data.director}</h3>
         </div>

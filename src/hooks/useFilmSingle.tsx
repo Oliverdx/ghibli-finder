@@ -13,7 +13,7 @@ type dataType = {
   casting: []
 };
 
-const useFilmSingle = () => {
+const useFilmSingle = (): any => {
   const [data, setData] = useState<dataType>();
   const filmsReducer = useSelector(state => state.films);
   const peopleReducer = useSelector(state => state.people);
