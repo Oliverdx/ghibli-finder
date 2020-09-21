@@ -3,8 +3,10 @@ import { setFilmsBookmark } from '../actions/bookmarks';
 function setBookmarks () {
   const favoritos = localStorage.getItem('favoritos');
 
-  if (favoritos === null)
+  if (favoritos === null) {
     localStorage.setItem('favoritos', '');
+    return dispatch => dispatch(setFilmsBookmark([]));
+  }
   else {
     return dispatch => dispatch(setFilmsBookmark(favoritos.split(',')));
   }

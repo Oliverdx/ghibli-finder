@@ -9,7 +9,7 @@ const initialState = {
 };
 
 function addBookMarkItem (state = initialState, item) {
-  const newBookmark = [...state.bookmarklist, item];
+  const newBookmark = state.bookmarklist[0] === '' ? [item] : [...state.bookmarklist, item];
   localStorage.setItem('favoritos', newBookmark.toString());
   return newBookmark;
 };
