@@ -34,7 +34,7 @@ const Home = ({ films, bookmarks, setBookmark, removeBookmark }: Props): React.R
             data={film}
             key={film.id}
             isFavorite={true}
-            handleFavoritos={handleBookmark} />
+            handleFavoritos={handleBookmark} />;
       });
     }
 
@@ -69,7 +69,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setBookmark: newItem => dispatch(setNewBookmark(newItem)),
     removeBookmark: removeItem => dispatch(removeBookmark(removeItem))
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

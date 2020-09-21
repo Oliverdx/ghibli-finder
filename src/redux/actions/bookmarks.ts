@@ -7,18 +7,18 @@ export function setFilmsBookmark (films) {
     type: SET_FILM_BOOKMARK,
     bookmarkList: films,
   };
-};
+}
 
 export function setNewBookmark (item) {
   return {
     type: SET_NEW_BOOKMARK,
     item: item
-  }
+  };
 }
 
 export function removeBookmark (item) {
   return {
     type: REMOVE_BOOKMARK_ITEM,
     item: item
-  }
+  };
 }

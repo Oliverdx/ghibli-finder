@@ -1,8 +1,9 @@
 const useFavoritos = (bookmarks, setBookmark, removeBookmark) => {
 
   const checkFavorito = (id) => {
-    if (bookmarks.length)
+    if (bookmarks.length) {
       return bookmarks.some(favorito => favorito === id);
+    }
 
     return false;
   };

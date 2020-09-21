@@ -11,6 +11,6 @@ function setBookmarks () {
     return dispatch => dispatch(setFilmsBookmark(favoritos.split(',')));
   }
 
-};
+}
 
 export default setBookmarks;

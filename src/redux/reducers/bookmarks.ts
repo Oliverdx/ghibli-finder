@@ -12,7 +12,7 @@ function addBookMarkItem (state = initialState, item) {
   const newBookmark = state.bookmarklist[0] === '' ? [item] : [...state.bookmarklist, item];
   localStorage.setItem('favoritos', newBookmark.toString());
   return newBookmark;
-};
+}
 
 function removeBookMarkItem (bookmarks, item) {
 
@@ -24,7 +24,7 @@ function removeBookMarkItem (bookmarks, item) {
   const newBookmark = bookmarks.filter(bookmark => bookmark !== item);
   localStorage.setItem('favoritos', newBookmark.toString());
   return newBookmark;
-};
+}
 
 export default function filmsBookmarked (state = initialState, action) {
   switch (action.type) {
@@ -39,7 +39,6 @@ export default function filmsBookmarked (state = initialState, action) {
         bookmarklist: addBookMarkItem(state, action.item)
       };
     case REMOVE_BOOKMARK_ITEM:
-      console.log('Removendo item', action.item);
       return {
         ...state,
         bookmarklist: removeBookMarkItem(state.bookmarklist, action.item)
