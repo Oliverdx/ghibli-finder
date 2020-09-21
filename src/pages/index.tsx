@@ -14,7 +14,7 @@ interface Props {
 const Favoritos = ({ films }: Props): React.ReactElement => {
 
   const [loading, setLoading] = useState(true);
-  const { favoritos, checkFavorito } = useFavoritos();
+  const { favoritos } = useFavoritos();
 
   useEffect(() => {
     if (films.length || favoritos.length)

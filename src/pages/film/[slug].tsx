@@ -31,7 +31,7 @@ const Film = (): React.ReactElement => {
           LOADING...
         </div>
         :
-        <div className='content-wrapper'>
+        <div className={`content-wrapper ${styles.contentbg}`} >
           <header className={styles.filmHeader}>
             <h1 className={styles.filmTitle}>{data?.filmData?.title}</h1>
             <button className={styles.bookmark}>

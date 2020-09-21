@@ -1,11 +1,12 @@
+@import './responsive.scss';
+
 html,
 body {
-  width: 100vw;
   min-height: 100vh;
   padding: 0;
   margin: 0;
   font-family: Roboto, sans-serif;
-  background: var(--redgb) url('/img/general_bg.jpg') no-repeat top left / cover;
+  background: url('/img/general_bg.jpg') no-repeat top left / cover;
   background-attachment: fixed;
   color: var(--white);
   text-align: justify;
@@ -13,6 +14,20 @@ body {
 
 body {
   padding: 15px 30px;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--white);
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--darkblue)
+  }
+
 }
 
 a {
@@ -48,4 +63,34 @@ button {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+@include computer-small {
+
+  body {
+    padding: 15px 10px;
+  }
+
+  .content-wrapper {
+    width: calc(100% - 300px);
+  }
+}
+
+@include tablet {
+
+  html,
+  body {
+    min-height: initial;
+    height: 90vh;
+    overflow-y: scroll;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .content-wrapper {
+    width: 100%;
+  }
+
 }
