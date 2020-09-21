@@ -14,18 +14,24 @@ const Favoritos = ({ films }: Props): React.ReactElement => {
 
   const [favoritos, setFavoritos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [noBookmarks, setNoBookmarks] = useState('');
 
   useEffect(() => {
     const getFavoritos = localStorage.getItem('favoritos');
     if (getFavoritos)
       setFavoritos(getFavoritos.split(','));
 
+    setTimeout(() => {
+      if (!getFavoritos)
+        setNoBookmarks('No content marked as bookmark found');
+    }, 2000);
+
   }, []);
 
   useEffect(() => {
-    if (favoritos.length)
+    if (favoritos.length || noBookmarks)
       setLoading(false);
-  }, [favoritos]);
+  }, [favoritos, noBookmarks]);
 
   const showFavoritos = () => {
     const itens = films.filter(film => {
@@ -44,7 +50,7 @@ const Favoritos = ({ films }: Props): React.ReactElement => {
         </div>
         :
         <div className='content-wrapper card-wrapper'>
-          {showFavoritos()}
+          {noBookmarks ? <h2>{noBookmarks}</h2> : showFavoritos()}
         </div>
       }
     </div>
