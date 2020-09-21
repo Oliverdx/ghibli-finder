@@ -5,8 +5,12 @@ const useFavoritos = () => {
   const [favoritos, setFavoritos] = useState([]);
 
   useEffect(() => {
-    if (window)
-      setFavoritos(localStorage.getItem('favoritos').split(','));
+    if (window) {
+      const localFavoritos = localStorage.getItem('favoritos');
+      if (localFavoritos?.length)
+        setFavoritos(localFavoritos.split(','));
+
+    }
   }, []);
 
   const handleFavoritos = (itemID) => {
