@@ -30,7 +30,7 @@ const Card = ({ data }: any): React.ReactElement => {
     const isFavorite = checkFavorito(itemID);
     setIsFavorite(!isFavorite);
     handleFavoritos(itemID);
-  }
+  };
 
   return (
     <div className={styles.card} style={background()}>
