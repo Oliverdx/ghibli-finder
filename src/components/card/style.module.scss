@@ -1,3 +1,5 @@
+@import '../../styles/responsive.scss';
+
 .card {
   position: relative;
   width: 260px;
@@ -85,5 +87,44 @@
       background: var(--darkblue);
       color: var(--white);
     }
+  }
+}
+
+/* Responsive */
+
+@include computer-medium {
+  .card {
+    width: 240px;
+  }
+}
+
+@include computer-small {
+  .card {
+    width: 210px;
+    height: 300px;
+  }
+}
+
+@include tablet {
+  .card {
+    width: calc(25% - 10px);
+  }
+}
+
+@include smartphone-large {
+  .card {
+    width: calc(33% - 10px);
+  }
+}
+
+@include smartphone-medium {
+  .card {
+    width: calc(50% - 10px);
+  }
+}
+
+@include smartphone-small {
+  .card {
+    width: 60%;
   }
 }

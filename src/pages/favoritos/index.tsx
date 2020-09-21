@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 
-import Sidebar from '../components/sidebar/sidebar';
-import Card from '../components/card/card';
-import useFavoritos from '../hooks/useFavoritos';
+import Sidebar from '../../components/sidebar/sidebar';
+import Card from '../../components/card/card';
 
-import { getFilms, getFilmsPending } from '../redux/reducers/films';
+import { getFilms, getFilmsPending } from '../../redux/reducers/films';
 import { useState, useEffect } from 'react';
 
 interface Props {
@@ -13,13 +12,28 @@ interface Props {
 
 const Favoritos = ({ films }: Props): React.ReactElement => {
 
+  const [favoritos, setFavoritos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { favoritos } = useFavoritos();
 
   useEffect(() => {
-    if (films.length || favoritos.length)
+    const getFavoritos = localStorage.getItem('favoritos');
+    if (getFavoritos)
+      setFavoritos(getFavoritos.split(','));
+
+  }, []);
+
+  useEffect(() => {
+    if (favoritos.length)
       setLoading(false);
-  }, [films, favoritos]);
+  }, [favoritos]);
+
+  const showFavoritos = () => {
+    const itens = films.filter(film => {
+      return favoritos.some(favorito => favorito === film.id);
+    });
+
+    return itens.map(item => <Card data={item} key={item.id} isFavorite={true} />);
+  };
 
   return (
     <div className='container'>
@@ -30,7 +44,7 @@ const Favoritos = ({ films }: Props): React.ReactElement => {
         </div>
         :
         <div className='content-wrapper card-wrapper'>
-          {films.map(item => <Card data={item} key={item.id} />)}
+          {showFavoritos()}
         </div>
       }
     </div>

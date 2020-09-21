@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux';
 import configureAppStore from '../redux/store';
+import Head from 'next/head';
 import Wrapper from '../components/wrapper';
 
 import '../styles/globals.scss';
@@ -12,6 +13,12 @@ const MyApp = ({ Component, pageProps }: any): React.ReactElement => {
   return (
     <Provider store={store}>
       <Wrapper>
+        {/* eslint-disable  */}
+        <Head>
+          <title>Ghibli finder - Busque filmes do estúdio Ghibli</title>
+          <meta name="theme-color" content="#003954"></meta>
+        </Head>
+        {/* eslint-enable */}
         <Component {...pageProps} />
       </Wrapper>
     </Provider>);
