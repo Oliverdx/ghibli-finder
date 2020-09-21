@@ -4,22 +4,36 @@ import Sidebar from '../components/sidebar/sidebar';
 import Card from '../components/card/card';
 import useFavoritos from '../hooks/useFavoritos';
 
-import { getFilms, getFilmsPending } from '../redux/reducers/films';
+import { getFilms } from '../redux/reducers/films';
+import { getFilmsBookmarked } from '../redux/reducers/bookmarks';
+import { setNewBookmark, removeBookmark } from '../redux/actions/bookmarks';
 import { useState, useEffect } from 'react';
 
 interface Props {
-  films: any
+  films: any,
+  bookmarks: any,
+  setBookmark: Function,
+  removeBookmark: Function
 }
 
-const Favoritos = ({ films }: Props): React.ReactElement => {
+const Favoritos = ({ films, bookmarks, setBookmark, removeBookmark }: Props): React.ReactElement => {
 
   const [loading, setLoading] = useState(true);
-  const { favoritos } = useFavoritos();
+  const { checkFavorito } = useFavoritos(bookmarks);
 
   useEffect(() => {
-    if (films.length || favoritos.length)
+    if (films.length || bookmarks)
       setLoading(false);
-  }, [films, favoritos]);
+  }, [films, bookmarks]);
+
+  const handleBookmark = (newItem) => {
+    const checkFavorito = bookmarks.some(bookmark => bookmark === newItem);
+
+    if (checkFavorito)
+      return removeBookmark(newItem);
+
+    return setBookmark(newItem);
+  };
 
   return (
     <div className='container'>
@@ -30,7 +44,11 @@ const Favoritos = ({ films }: Props): React.ReactElement => {
         </div>
         :
         <div className='content-wrapper card-wrapper'>
-          {films.map(item => <Card data={item} key={item.id} />)}
+          {films.map(item => <Card
+            data={item}
+            key={item.id}
+            isFavorite={checkFavorito(item.id)}
+            handleFavoritos={handleBookmark} />)}
         </div>
       }
     </div>
@@ -41,8 +59,15 @@ const mapStateToProps = state => {
 
   return {
     films: getFilms(state).films,
-    pending: getFilmsPending(state)
+    bookmarks: getFilmsBookmarked(state).bookmarklist
   };
 };
 
-export default connect(mapStateToProps)(Favoritos);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setBookmark: newItem => dispatch(setNewBookmark(newItem)),
+    removeBookmark: removeItem => dispatch(removeBookmark(removeItem))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Favoritos);
