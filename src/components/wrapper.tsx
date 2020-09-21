@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import fetchFilms from '../redux/selector/films';
 import fetchPeople from '../redux/selector/people';
+import setBookmarks from '../redux/selector/bookmark';
 
 const Wrapper = ({ children }) => {
 
@@ -11,6 +12,7 @@ const Wrapper = ({ children }) => {
   useEffect(() => {
     dispatch(fetchFilms());
     dispatch(fetchPeople());
+    dispatch(setBookmarks());
   }, []);
 
   return children;

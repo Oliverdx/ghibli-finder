@@ -1,17 +1,29 @@
+import { connect } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import Sidebar from '../../components/sidebar/sidebar';
 import styles from './film.module.scss';
 import useFilmSingle from '../../hooks/useFilmSingle';
+import useFavoritos from '../../hooks/useFavoritos';
+import { getFilmsBookmarked } from '../../redux/reducers/bookmarks';
+import { setNewBookmark, removeBookmark } from '../../redux/actions/bookmarks';
 
-const Film = (): React.ReactElement => {
+interface Props {
+  bookmarks: any,
+  setBookmark: Function,
+  removeBookmark: Function
+}
+
+const Film = ({ bookmarks, setBookmark, removeBookmark }: Props): React.ReactElement => {
 
   const router = useRouter();
   const { slug } = router.query;
 
   const [loading, setLoading] = useState(true);
+  const [bookmarkIcon, setBookmarkIcon] = useState('heart.png');
   const { data, getFilmData } = useFilmSingle();
+  const { checkFavorito, handleBookmark } = useFavoritos(bookmarks, setBookmark, removeBookmark);
 
   useEffect(() => {
     if (!data?.filmData || !data?.casting.length) {
@@ -22,6 +34,15 @@ const Film = (): React.ReactElement => {
       setLoading(false);
 
   }, [data]);
+
+  useEffect(() => {
+    if (checkFavorito(data?.filmData?.id)) {
+      setBookmarkIcon('heart_filled.png');
+    } else {
+      setBookmarkIcon('heart.png');
+    }
+
+  }, [data, bookmarks]);
 
   return (
     <div className='container'>
@@ -34,8 +55,8 @@ const Film = (): React.ReactElement => {
         <div className={`content-wrapper ${styles.contentbg}`} >
           <header className={styles.filmHeader}>
             <h1 className={styles.filmTitle}>{data?.filmData?.title}</h1>
-            <button className={styles.bookmark}>
-              <img src="/img/heart.png" alt="heart icon" className={styles.iconImage} />
+            <button className={styles.bookmark} onClick={() => handleBookmark(data?.filmData?.id)} >
+              <img src={`/img/${bookmarkIcon}`} alt="heart icon" />
             </button>
             <div className={styles.release}>
               {data?.filmData?.release_date}
@@ -70,4 +91,19 @@ const Film = (): React.ReactElement => {
   );
 };
 
-export default Film;
+
+const mapStateToProps = state => {
+
+  return {
+    bookmarks: getFilmsBookmarked(state).bookmarklist
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setBookmark: newItem => dispatch(setNewBookmark(newItem)),
+    removeBookmark: removeItem => dispatch(removeBookmark(removeItem))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Film);
