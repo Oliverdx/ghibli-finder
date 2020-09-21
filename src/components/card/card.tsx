@@ -34,7 +34,7 @@ const Card = ({ data, isFavorite, handleFavoritos }: any): React.ReactElement =>
         </div>
 
         <p className={styles.card_description__text}>{data.description}</p>
-        <a className={styles.card_readMore} href={`/film/${data.title}`}>Saiba Mais</a>
+        <a className={styles.card_readMore} href={`/film/${data.title}`}>Read More</a>
       </div>
     </div>
   );

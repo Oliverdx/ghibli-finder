@@ -10,7 +10,7 @@ const SideBar = () => {
         <span className={styles.icon}>
           <img src="/img/heart_filled.png" alt="heart icon" className={styles.iconImage} />
         </span>
-        <span>Favoritos</span>
+        <span>Bookmarks</span>
       </a>
     </div>
   );

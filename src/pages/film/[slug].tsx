@@ -73,11 +73,11 @@ const Film = ({ bookmarks, setBookmark, removeBookmark }: Props): React.ReactEle
             </div>
             <div className={styles.RightBox}>
               <div className={styles.casting}>
-                <b>Personagens</b>
+                <b>Cast</b>
                 <p>{data?.casting?.join(', ')}</p>
               </div>
               <div className={styles.director}>
-                <b>Diretor</b>
+                <b>Director</b>
                 <p>{data?.filmData?.director}</p>
               </div>
               <div className={styles.producer}>
