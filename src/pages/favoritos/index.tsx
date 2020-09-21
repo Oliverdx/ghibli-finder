@@ -1,38 +1,44 @@
 import { connect } from 'react-redux';
+import { useState, useEffect } from 'react';
 
 import Sidebar from '../../components/sidebar/sidebar';
 import Card from '../../components/card/card';
+import useFavoritos from '../../hooks/useFavoritos';
 
-import { getFilms, getFilmsPending } from '../../redux/reducers/films';
-import { useState, useEffect } from 'react';
+import { getFilms } from '../../redux/reducers/films';
+import { getFilmsBookmarked } from '../../redux/reducers/bookmarks';
+import { setNewBookmark, removeBookmark } from '../../redux/actions/bookmarks';
 
 interface Props {
-  films: any
+  films: any,
+  bookmarks: any,
+  setBookmark: Function,
+  removeBookmark: Function
 }
 
-const Favoritos = ({ films }: Props): React.ReactElement => {
+const Home = ({ films, bookmarks, setBookmark, removeBookmark }: Props): React.ReactElement => {
 
-  const [favoritos, setFavoritos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { checkFavorito, handleBookmark } = useFavoritos(bookmarks, setBookmark, removeBookmark);
 
   useEffect(() => {
-    const getFavoritos = localStorage.getItem('favoritos');
-    if (getFavoritos)
-      setFavoritos(getFavoritos.split(','));
-
-  }, []);
-
-  useEffect(() => {
-    if (favoritos.length)
+    if (films.length)
       setLoading(false);
-  }, [favoritos]);
+  }, [films]);
 
   const showFavoritos = () => {
-    const itens = films.filter(film => {
-      return favoritos.some(favorito => favorito === film.id);
-    });
+    if (bookmarks.length) {
+      return films.map(film => {
+        if (checkFavorito(film.id))
+          return <Card
+            data={film}
+            key={film.id}
+            isFavorite={true}
+            handleFavoritos={handleBookmark} />;
+      });
+    }
 
-    return itens.map(item => <Card data={item} key={item.id} isFavorite={true} />);
+    return <h2>No Itens Founded</h2>;
   };
 
   return (
@@ -55,8 +61,15 @@ const mapStateToProps = state => {
 
   return {
     films: getFilms(state).films,
-    pending: getFilmsPending(state)
+    bookmarks: getFilmsBookmarked(state).bookmarklist
   };
 };
 
-export default connect(mapStateToProps)(Favoritos);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setBookmark: newItem => dispatch(setNewBookmark(newItem)),
+    removeBookmark: removeItem => dispatch(removeBookmark(removeItem))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
