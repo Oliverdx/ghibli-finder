@@ -57,12 +57,13 @@ npm run lint
 
 ## Para o futuro
 
-[ ] Melhorias de Design;
-[ ] Correção das imagens (remoção dos placeholders), capturando as imagens corretas de cada filme;
-[ ] API client para fazer correções e acrescimos de novas funcionalidades na aplicação;
-[ ] Campo de busca para facilitar a busca por filmes
-[ ] Testes Unitários
-[ ] PWA.
+- [ ] Melhorias de Design;
+- [ ] Correção das imagens (remoção dos placeholders), capturando as imagens corretas de cada filme;
+- [ ] API client para fazer correções e acrescimos de novas funcionalidades na aplicação;
+- [ ] Possibilidade de edição do conteúdo, salvando as edições em banco de dados noSQL (MongoDb);
+- [ ] Campo de busca para facilitar a busca por filmes
+- [ ] Testes Unitários
+- [ ] PWA.
 
 ## Author
 
